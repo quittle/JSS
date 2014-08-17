@@ -4,12 +4,23 @@
 	TEXT_COLOR: #efefef;
 	TEXT_SECONDARY_COLOR: #acacac;
 	
+	getElementsByClassName: function(cn){
+		var items = document.getElementsByTagName("*"),
+			ret = [];
+		for(var i = 0; i < items.length; i++){
+			if((" " + items[i].className + " ").indexOf(" " + cn + " ") > -1){
+				ret.push(items[i]);
+			}
+		}
+		return ret;
+	};
+	
 	navbarItemWidth: function(){
-		var items = document.getElementsByClassName("navbar-item");
+		var items = getElementsByClassName("navbar-item");
 		return (1 / items.length) * 100 + "%";
 	};
 	
-	text-shadow: function(value){
+	textShadow: function(value){
 		//All the standard prefixes
 		var prefixes = ["moz", "webkit", "o", "ms", "khtml"];
 		
@@ -40,7 +51,7 @@ a:hover{
 }
 
 #title{
-	@text-shadow("0 0 10px #fff")@;
+	@textShadow("0 0 10px #fff")@;
 }
 
 #navbar{

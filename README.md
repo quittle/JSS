@@ -123,7 +123,12 @@ For working samples, look in the examples directory.
 
 - Any errors are printed to the console with the function name, arguments, and the error.
 
+## Tips
+- When debugging JSS, the order of the errors does not necessarily matter or appear relevant to the actual problem.  The error messages from the parsing are the most relevant.
+- Keep constants capitalized and use the shorthand @VAR_NAME@ to use them
+- Use camel case for functions @calcWidth(100)@
+
 ## Limitations
-- Nesting of functions requires static arguments
-  - `@func("I am a string", 3)@` vs `@func(var1, var2)@`
 - Each .jss file is independent so you can't access variables from one sheet on the next
+- All JSS variables must be valid javascript variable names
+- Many JSS files cannot be compressed using standard css minifiers right now. I am working to fix this soon.
