@@ -1,4 +1,8 @@
-/*/
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ 
+ /*/
  * JSS Version 0.0.2
  * Author: Dustin Doloff
  * Email: me@dustindoloff.com
@@ -7,13 +11,8 @@
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
- * Use this code (almost) as you will. Modify it if you want.
- * Just give me attribution as original author.
- * You can't sell this or a variation of it.  It may be packaged
- *  in a larger service for profit if this is a mere tool of the
- *  product and not a primary aspect.  I'd still appreciate if
- *  my name and contact information at the top were provided in
- *  some manner.
+ * Do not alter or remove the first 16 lines of this document.
+ *
 /*/
 
 (function(){
