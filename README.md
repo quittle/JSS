@@ -40,46 +40,6 @@ body{
 ```css
 !JSS{
 	add: function(a, b){
-		return a JSS
-===
-
-A CSS precompiler with a single JS file.
-
-Guide for using coming soon. For now, just look at the sample code.
-
-## Set Up
-- Download the latest JSS.js file
-- Add a script tag to your website loading the JSS.js file
-- Add a link tag linking to your jss file the same as a css file.  Just change `rel="stylesheet"` to be `rel="jss"`.
-
-```
-	<html>
-		<head>
-			<link ref="jss" href="main.jss" />
-			<link ref="jss" defer href="after-load.jss" />
-			<link ref="jss" sync href="right-now.jss" />
-
-			<script src="JSS.js"></script>
-		</head>
-		<body>
-		    ...
-		</body>
-	</html>
-```
-
-## Samples
-```css
-!JSS{
-	PRIMARY_COLOR: #ff0;
-}
-body{
-	background: @PRIMARY_COLOR@;
-}
-```
-
-```css
-!JSS{
-	add: function(a, b){
 		return a + b;
 	};
 }
@@ -97,9 +57,15 @@ body{
 }
 	
 #title:before{
-		content: 'Location: @URL@';
-	}
+	content: 'Location: @URL@';
 }
+```
+
+
+```css
+!JSS{compressedCSS:@'function(){
+		return document.location;
+	};'@}#title:before{content:'Location: @URL@';}}
 ```
 
 For working samples, look in the examples directory.
@@ -127,8 +93,8 @@ For working samples, look in the examples directory.
 - When debugging JSS, the order of the errors does not necessarily matter or appear relevant to the actual problem.  The error messages from the parsing are the most relevant.
 - Keep constants capitalized and use the shorthand @VAR_NAME@ to use them
 - Use camel case for functions @calcWidth(100)@
+- To use CSS compressors that don't break your javascript functions, use @'strings prefixed by an @ sign. E.G. !JSS{ myFunc : @'function(){...}'; }
 
 ## Limitations
 - Each .jss file is independent so you can't access variables from one sheet on the next
 - All JSS variables must be valid javascript variable names
-- Many JSS files cannot be compressed using standard css minifiers right now. I am working to fix this soon.

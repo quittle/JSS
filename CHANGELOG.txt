@@ -1,0 +1,13 @@
+## 0.0.4
+- Added several built-in functions (add, multiply, pow, etc.)
+- Added support for string escaped functions that allow CSS compressors to run. !JSS{compressedCSS:@'function(){...}'}
+- Added support for recursive function calls
+
+## 0.0.3
+- Rewrote the way static variables are called. Everything is a function call now.
+
+## 0.0.2
+- Added better checking for JSS variables
+
+## 0.0.1
+- Initial creation
