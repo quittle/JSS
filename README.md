@@ -55,7 +55,7 @@ body{
 		return document.location;
 	};
 }
-	
+
 #title:before{
 	content: 'Location: @URL@';
 }
@@ -63,9 +63,7 @@ body{
 
 
 ```css
-!JSS{compressedCSS:@'function(){
-		return document.location;
-	};'@}#title:before{content:'Location: @URL@';}}
+!JSS{compressedCSS:@'function(){return document.location;};'@}#title:before{content:'Location: @URL@';}}
 ```
 
 For working samples, look in the examples directory.
@@ -73,28 +71,31 @@ For working samples, look in the examples directory.
 ## How It Works
 
 - The JSS script is loaded.
-- The script checks the document for JSS links and loads them as necessary.
+- The script checks the document for `JSS` links and loads them as necessary.
 - Then it checks again during the window's load event.
 - Then it checks a few times quickly after, then every few seconds to check if any new links are added dynamically.
 
 - When loading JSS, the request can be made synchronously or asynchronously.
 - If using the defer attribute, JS won't be loaded until `document.readyState` equals `"complete"`
 
-- The script loads the whole page into memory, parses the !JSS tags and defines variables.
+- The script loads the whole page into memory, parses the `!JSS` tags and defines variables.
 - It then rewrites all variable definitions so they are functions, turning `VAR: 2px` into `VAR: function(){return "2px"}`.
 - It redefines all the variables as function calls so `@VAR@` becomes `@VAR()@`.
 - Then it replaces all the variables C-macro style with the results of the function calls, both in the JSS variables and in the rest of the stylesheet.
 
-- After replacing everything, it removes the !JSS tags, adds a style tag to the source right after the link to preserve order, and then fills it with the final source.
+- After replacing everything, it removes the `!JSS` tags, adds a style tag to the source right after the link to preserve order, and then fills it with the final source.
 
 - Any errors are printed to the console with the function name, arguments, and the error.
 
 ## Tips
 - When debugging JSS, the order of the errors does not necessarily matter or appear relevant to the actual problem.  The error messages from the parsing are the most relevant.
-- Keep constants capitalized and use the shorthand @VAR_NAME@ to use them
-- Use camel case for functions @calcWidth(100)@
-- To use CSS compressors that don't break your javascript functions, use @'strings prefixed by an @ sign. E.G. !JSS{ myFunc : @'function(){...}'; }
+- Keep constants capitalized and use the shorthand `@VAR_NAME@` to use them
+- Use camel case for functions `@calcWidth(100)@`
+- To use CSS compressors that don't break your javascript functions, use strings prefixed by `@`. E.G. `!JSS{ myFunc : @'function(){...}'; }`
 
 ## Limitations
 - Each .jss file is independent so you can't access variables from one sheet on the next
 - All JSS variables must be valid javascript variable names
+
+## Current Status
+This project is on indefinitely on hold.  After working with it longer, I decided that the project is not a viable project due to the increased processing load, extra file size (due to extra JS file), and dependency on Javascript for presentation.  I cautiously have plans to re-implement it as a much simpler CSS loading library, focusing on ```defer``` and ```sync``` attributes to load CSS in a way not possible through regular HTML/CSS.
